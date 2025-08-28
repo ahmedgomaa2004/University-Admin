@@ -99,10 +99,10 @@
                 
                 <div class="form-group">
                   <label>Gender</label>
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select name="gender" class="form-control select2bs4" style="width: 100%;">
                     <option >gender</option>
-                    <option >Male</option>
-                    <option>Female</option>
+                    <option value="male" {{ $students->gender == "male" ? 'selected' : '' }} >Male</option>
+                    <option value="female" {{ $students->gender == "female" ? 'selected' : '' }} >Female</option>
                   </select>
                 </div>
                 <div class="form-group">

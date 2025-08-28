@@ -73,9 +73,9 @@
                           <input 
                               class="custom-control-input" 
                               type="checkbox" 
-                              id="course_{{ $course->id }}" 
+                              id="course_{{ $course->id }}"
                               name="courses[]" 
-                              value="">
+                              value="{{ $course->id }}">
                               
                           <label for="course_{{ $course->id }}" class="custom-control-label">
                               {{ $course->name }}

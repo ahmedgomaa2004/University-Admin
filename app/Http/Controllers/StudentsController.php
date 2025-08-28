@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\Console\CastMakeCommand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,9 +39,7 @@ class StudentsController extends Controller
     {
         $courses = DB::table('courses')->get();
         $doctors = DB::table('doctors')->get();
-
-    
-
+        
         return view('students.create', ['courses' => $courses, 'doctors' => $doctors]);
     }
 
@@ -49,14 +48,24 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('students')->insert([
-        'sname'    => $request->input('name'),
-        'age'     => $request->input('age'),
-        'address' => $request->input('address'),
-        'gender'  => $request->input('gender'),
-        'doctor_id'  => $request->input('doctor_id'),]);
+        $student_id = DB::table('students')->insertGetId([
+        'sname'     => $request->name,
+        'age'       => $request->age,
+        'address'   => $request->address,
+        'gender'    => $request->gender,
+        'doctor_id' => $request->doctor_id,
+        ]);
+
+        if ($request->has('courses')) {
+            foreach ($request->courses as $course_id) {
+                DB::table('student_courses')->insert([
+                'student_id' => $student_id,
+                'courses_id' => $course_id ]);
+            }
+        }
 
         return redirect()->back()->with('success', 'student added successfully');
+
     }
 
     /**
@@ -85,18 +94,30 @@ class StudentsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        dd($request->all());
         DB::table('students')
             ->where('id', $id)
             ->update([
-                'name' => $request->input('name'),
+                'sname' => $request->input('name'),
                 'age' => $request->input('age'),
                 'address' => $request->input('address'),
                 'gender'=> $request->input('gender'),
-                'salary'=> $request->input('salary')
-            ]);
+                'doctor_id'=> $request->input('doctor_id')
+        ]);
 
-        return redirect()->route('doctors.index')->with('success', 'Doctor updated successfully');
+        DB::table('student_courses')->where('student_id', $id)->delete();
+   
+        if ($request->has('courses')) {
+            foreach ($request->courses as $course_id) {
+                DB::table('student_courses')->insert([
+                    'student_id' => $id,
+                    'courses_id' => $course_id,
+                ]);
+            }
+        }
+    
+
+
+        return redirect()->route('students.index')->with('success', 'Student updated successfully');
     }
 
     /**
@@ -104,6 +125,7 @@ class StudentsController extends Controller
      */
     public function destroy(string $id)
     {
+        DB::table('student_courses')->where('student_id', $id)->delete();
         DB::table('students')->where('id', $id)->delete();
         return redirect()->route('students.index')->with('success', 'Student deleted successfully');
     }
