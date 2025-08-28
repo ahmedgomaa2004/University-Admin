@@ -39,7 +39,7 @@ class StudentsController extends Controller
     {
         $courses = DB::table('courses')->get();
         $doctors = DB::table('doctors')->get();
-        
+
         return view('students.create', ['courses' => $courses, 'doctors' => $doctors]);
     }
 
@@ -64,7 +64,7 @@ class StudentsController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'student added successfully');
+        return redirect()->back()->with('success', 'Student added successfully');
 
     }
 

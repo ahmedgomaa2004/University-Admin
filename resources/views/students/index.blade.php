@@ -3,17 +3,17 @@
 
 @section("content")
 
-@if(session('success'))
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    Swal.fire({
-        title: 'success!',
-        text: "{{ session('success') }}",
-        icon: 'success',
-        confirmButtonText: 'OK'
-    });
-</script>
-@endif
+    @if(session('success'))
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Swal.fire({
+            title: 'success!',
+            text: "{{ session('success') }}",
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    </script>
+    @endif
 
     <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -53,6 +53,7 @@
                     <th>Age</th>
                     <th>Gender</th>
                     <th>Courses</th>
+                    <th>hours</th>
                     <th>Doctor</th>
                     <th style="width: 220px;">Actions</th>
                   </tr>
@@ -66,6 +67,7 @@
                     <td>{{ $student->age }}</td>
                     <td>{{ $student->gender }}</td>
                     <td>{{ $student->courses }}</td>
+                    <td>{{ $student->total_hours }}</td>
                     <td>{{ $student->doctor_name }}</td>
                     <td  class="d-flex">
                         <a href="{{ route("students.edit",$student->s_id) }}" class="btn btn-outline-success btn-sm mx-2" style="width: 47%;"> <ion-icon name="create" style="width: 15px;"></ion-icon> Edit</a>

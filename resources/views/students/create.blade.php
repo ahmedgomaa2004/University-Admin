@@ -2,6 +2,19 @@
 
 
 @section("content")
+
+  @if(session('success'))
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+      Swal.fire({
+          title: 'success!',
+          text: "{{ session('success') }}",
+          icon: 'success',
+          confirmButtonText: 'OK'
+      });
+  </script>
+  @endif
+
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -13,7 +26,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route("home")}}">Home</a></li>
-              <li class="breadcrumb-item active">Edit student</li>
+              <li class="breadcrumb-item active">Add student</li>
             </ol>
           </div>
         </div>
@@ -31,7 +44,7 @@
   @csrf
     
               <div class="card-header bg-success">
-                <h3 class="card-title">Edit student</h3>
+                <h3 class="card-title">Add student</h3>
               </div>
               <div class="card-body">
                 <div class="form-group">
