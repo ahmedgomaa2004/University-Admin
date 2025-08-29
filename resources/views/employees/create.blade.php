@@ -40,7 +40,7 @@
           <!-- left column -->
           <div class="col-md-12">
 
-<form action="{{ route('employees.store')}}" method="post" class="card card-dark mx-3">
+<form action="{{ route('employees.store')}}" method="post" class="card card-warning mx-3">
     @csrf
     
               <div class="card-header">
@@ -114,7 +114,7 @@
                 </div>
                 
                 <div class="form-group">
-                <button type="submit" class="btn btn-block btn-dark btn-lg" style="width: 150px;">Add</button>
+                <button type="submit" class="btn btn-block btn-warning btn-lg" style="width: 150px;">Add</button>
                 </div>
               </div>
               <!-- /.card-body -->

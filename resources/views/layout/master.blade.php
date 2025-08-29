@@ -198,13 +198,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="index.html" class="nav-link ">
+                <a href="{{ route("departments.index") }}" class="nav-link ">
                   <ion-icon class="far nav-icon" name="list"></ion-icon>
                   <p>List</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="index2.html" class="nav-link">
+                <a href="{{ route("departments.create") }}" class="nav-link">
                   <ion-icon class="far nav-icon" name="person-add"></ion-icon>
                   <p>Add</p>
                 </a>

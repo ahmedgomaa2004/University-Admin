@@ -27,7 +27,7 @@
           <!-- left column -->
           <div class="col-md-12">
 
-<form action="{{ route('employees.update', $empl->id)}}" method="post" class="card card-dark mx-3">
+<form action="{{ route('employees.update', $empl->id)}}" method="post" class="card card-warning mx-3">
     @csrf
     @method("PUT")
     
@@ -100,7 +100,7 @@
                 </div>
                 
                 <div class="form-group">
-                <button type="submit" class="btn btn-block btn-dark btn-lg" style="width: 150px;">Update</button>
+                <button type="submit" class="btn btn-block btn-warning btn-lg" style="width: 150px;">Update</button>
                 </div>
 
               </div>
