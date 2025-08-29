@@ -69,13 +69,18 @@
                     <td>{{ $student->courses }}</td>
                     <td>{{ $student->total_hours }}</td>
                     <td>{{ $student->doctor_name }}</td>
-                    <td  class="d-flex">
-                        <a href="{{ route("students.edit",$student->s_id) }}" class="btn btn-outline-success btn-sm mx-2" style="width: 47%;"> <ion-icon name="create" style="width: 15px;"></ion-icon> Edit</a>
-                        <form  action="{{ route('students.destroy', $student->s_id) }}" style="width: 38%;" method="post">
-                          @csrf
-                          @method('DELETE')
-                          <button class="btn btn-outline-danger btn-sm w-100" > <ion-icon name="trash" ></ion-icon> Delete</button>
-                        </form>
+                    <td class="d-flex w-100">
+                    <a href="{{ route('students.edit',$student->s_id) }}" style="width: 54%;"
+                      class="btn btn-outline-success btn-sm me-2 edit-btn mx-1" >
+                      <ion-icon name="create" style="width: 15px;"></ion-icon> Edit
+                    </a>
+                    <form action="{{ route('students.destroy', $student->s_id) }}" method="POST" style="margin:0; width: 42%;">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-outline-danger btn-sm delete-btn mx-1" style="width: 100%;">
+                          <ion-icon name="trash" style="width: 15px;"></ion-icon> Delete
+                      </button>
+                    </form>
                     </td>
                   </tr>
                   @endforeach
