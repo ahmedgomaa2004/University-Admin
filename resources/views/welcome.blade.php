@@ -58,14 +58,14 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{ $e_count[0]->COUNT }}</h3>
 
-                <p>Department</p>
+                <p>Employees</p>
               </div>
               <div class="icon">
                 <i class="ion"><ion-icon name="grid-outline"></ion-icon></ion-icon></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route("employees.index") }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
