@@ -25,6 +25,153 @@
   <link rel="stylesheet" href="{{ asset('adminlte/themes/v3/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('adminlte/themes/v3/plugins/summernote/summernote-bs4.min.css') }}">
+  
+  <!-- Custom CSS for User Profile Dropdown -->
+  <style>
+    .user-menu .user-image {
+      width: 32px;
+      height: 32px;
+      margin-right: 8px;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .user-menu .user-image:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      border-color: #007bff;
+      z-index: 1;
+      cursor: pointer;
+    }
+    
+    .user-header {
+      height: 175px;
+      padding: 10px;
+      text-align: center;
+      border-radius: 8px 8px 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .user-header img {
+      width: 90px;
+      height: 90px;
+      border: 3px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .user-header p {
+      margin-top: 10px;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    
+    .user-header p small {
+      display: block;
+      font-size: 12px;
+      opacity: 0.9;
+    }
+    
+    .user-footer {
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 0 0 8px 8px;
+      position: relative;
+    }
+    
+    .user-footer .btn {
+      margin: 0 5px;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    
+    .dropdown-menu-lg {
+      min-width: 280px;
+      animation: fadeInDown 0.3s ease;
+      border: none;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      margin-top: 5px;
+      z-index: 1050;
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .dropdown-menu.show {
+      display: block !important;
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .user-body {
+      padding: 15px;
+      border-top: 1px solid #dee2e6;
+      border-bottom: 1px solid #dee2e6;
+      background-color: #fff;
+      position: relative;
+    }
+    
+    .user-body .row {
+      margin: 0;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .user-body .col-4 {
+      padding: 0;
+      text-align: center;
+      flex: 1;
+    }
+    
+    .user-body a {
+      color: #6c757d !important;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      padding: 8px 0;
+      display: block;
+      font-weight: 500;
+      border-radius: 4px;
+    }
+    
+    .user-body a:hover {
+      color: #007bff !important;
+      background-color: #f8f9fa;
+      border-radius: 4px;
+      transform: translateY(-2px);
+      text-decoration: none;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .user-menu .nav-link:hover {
+      background-color: #f8f9fa;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      transform: translateY(-1px);
+      color: #495057;
+      text-decoration: none;
+    }
+    
+    .user-footer .btn:hover {
+      background-color: #e9ecef;
+      border-color: #dee2e6;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      color: #495057;
+      text-decoration: none;
+    }
+  </style>
 </head>
 
 
@@ -38,6 +185,7 @@
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -53,6 +201,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+   
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -63,6 +212,36 @@
           <i class="fas fa-th-large"></i>
         </a>
       </li>
+
+      <!-- User Profile Dropdown -->
+      <li class="nav-item dropdown user-menu">
+        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+          <img src="{{ asset('adminlte/themes/v3/dist/img/user2-160x160.jpg') }}" class="user-image img-circle elevation-2" alt="User Image">
+          <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <!-- User image -->
+          <li class="user-header bg-primary">
+            <img src="{{ asset('adminlte/themes/v3/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+            <p>
+              Ahmed Gomaa - Admin
+             
+            </p>
+          </li>
+          
+          <!-- Menu Footer-->
+          <li class="user-footer">
+            <a href="{{ route('profile.edit') }}" class="btn btn-default btn-flat">Profile</a>
+            <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+              @csrf
+              <button type="submit" class="btn btn-default btn-flat float-right" onclick="event.preventDefault(); this.closest('form').submit();">
+                Sign out
+              </button>
+            </form>
+          </li>
+        </ul>
+      </li>
+
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -83,7 +262,7 @@
           <img src="{{ asset('adminlte/themes/v3/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Ahmed Gomaa</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -211,6 +390,34 @@
               </li>
             </ul>
           </li>
+
+          @if ( Auth::user()->role == "admin" )
+          
+          
+          <li class="nav-item ">
+            <a href="#" class="nav-link">
+              <i class="px-1"><ion-icon style="height: 20px; width:20px; border-top: 2px;" name="people"></ion-icon></i>
+              <p>
+                Users
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route("users.index") }}" class="nav-link ">
+                  <ion-icon class="far nav-icon" name="list"></ion-icon>
+                  <p>List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route("users.create") }}" class="nav-link">
+                  <ion-icon class="far nav-icon" name="person-add"></ion-icon>
+                  <p>Add</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

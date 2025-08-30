@@ -7,6 +7,7 @@ use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\CoursessController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\DepartmentsController;
+use App\Http\Controllers\UsersController;
 
 use Illuminate\Support\Facades\DB;
 
@@ -21,9 +22,7 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -48,19 +47,21 @@ Route::get('/', function () {
     $de_count = DB::select('SELECT COUNT(id) AS COUNT FROM departments');
 
     return view('welcome')->with(['d_count'=> $d_count,'s_count'=>$s_count,'c_count'=>$c_count,'e_count'=>$e_count,'de_count'=>$de_count]);
-})->name('home');
+})->middleware(['auth', 'verified'])->name("home");
 
 
 
 
 
 
-Route::resource("doctors",DoctorsController::class);
+Route::resource("doctors",DoctorsController::class)->middleware(['auth', 'verified']);
 
-Route::resource("students",StudentsController::class);
+Route::resource("students",StudentsController::class)->middleware(['auth', 'verified']);
 
-Route::resource("courses",CoursessController::class);
+Route::resource("courses",CoursessController::class)->middleware(['auth', 'verified']);
 
-Route::resource("employees",EmployeesController::class);
+Route::resource("employees",EmployeesController::class)->middleware(['auth', 'verified']);
 
-Route::resource("departments",DepartmentsController::class);
+Route::resource("departments",DepartmentsController::class)->middleware(['auth', 'verified']);
+
+Route::resource("users",UsersController::class)->middleware(['auth', 'verified']);

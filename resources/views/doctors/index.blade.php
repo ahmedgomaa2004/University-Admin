@@ -54,7 +54,9 @@
                     <th>Age</th>
                     <th>Gender</th>
                     <th>Salary</th>
+                    @if ( Auth::user()->role == "admin" )
                     <th style="width: 220px;">Actions</th>
+                    @endif
                   </tr>
                   </thead>
                   <tbody>
@@ -66,6 +68,7 @@
                     <td>{{ $doctor->age }}</td>
                     <td>{{ $doctor->gender }}</td>
                     <td>{{ $doctor->salary }}</td>
+                    @if ( Auth::user()->role == "admin" )
                     <td class="d-flex w-100">
                     <a href="{{ route('doctors.edit',$doctor->id) }}" style="width: 54%;"
                       class="btn btn-outline-info btn-sm me-2 edit-btn mx-1" >
@@ -79,6 +82,7 @@
                       </button>
                     </form>
                     </td>
+                    @endif
                   </tr>
                   @endforeach
                   </tbody>

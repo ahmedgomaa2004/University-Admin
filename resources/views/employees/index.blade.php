@@ -55,7 +55,9 @@
                     <th>address</th>
                     <th>Manager</th>
                     <th>Department</th>
+                    @if ( Auth::user()->role == "admin" )
                     <th style="width: 220px;">Actions</th>
+                    @endif
                   </tr>
                   </thead>
                   <tbody>
@@ -68,6 +70,7 @@
                     <td>{{ $employee->address }}</td>
                     <td>{{ $employee->manager_name ? $employee->manager_name :"no manager" }}</td>
                     <td>{{ $employee->dname }}</td>
+                    @if ( Auth::user()->role == "admin" )
                     <td class="d-flex w-100">
                     <a href="{{ route('employees.edit',$employee->id) }}" style="width: 54%;"
                       class="btn btn-outline-warning btn-sm me-2 edit-btn mx-1" >
@@ -81,6 +84,7 @@
                       </button>
                     </form>
                     </td>
+                    @endif
                   </tr>
                   @endforeach
                   </tbody>

@@ -51,7 +51,9 @@
                     <th style="width: 20px;">#</th>
                     <th>Name</th>
                     <th>Description</th>
+                    @if ( Auth::user()->role == "admin" )
                     <th style="width: 220px;">Actions</th>
+                    @endif
                   </tr>
                   </thead>
                   <tbody>
@@ -60,6 +62,7 @@
                     <td>{{ $obj + 1 }}</td>
                     <td>{{ $department->name }}</td>
                     <td>{{ $department->description }}</td>
+                    @if ( Auth::user()->role == "admin" )
                     <td class="d-flex w-100">
                     <a href="{{ route('departments.edit',$department->id) }}" style="width: 54%;"
                       class="btn btn-block btn-outline-primary btn-sm mx-1" >
@@ -73,6 +76,7 @@
                       </button>
                     </form>
                     </td>
+                    @endif
                   </tr>
                   @endforeach
                   </tbody>
