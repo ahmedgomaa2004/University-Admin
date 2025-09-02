@@ -8,6 +8,7 @@ use App\Http\Controllers\CoursessController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\DashboardController;
 
 use Illuminate\Support\Facades\DB;
 
@@ -39,20 +40,13 @@ require __DIR__.'/auth.php';
 
 
 
-Route::get('/', function () {
-    $d_count = DB::select('SELECT COUNT(id) AS COUNT FROM doctors');
-    $s_count = DB::select('SELECT COUNT(id) AS COUNT FROM students');
-    $c_count = DB::select('SELECT COUNT(id) AS COUNT FROM courses');
-    $e_count = DB::select('SELECT COUNT(id) AS COUNT FROM employees');
-    $de_count = DB::select('SELECT COUNT(id) AS COUNT FROM departments');
+Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name("home");
 
-    return view('welcome')->with(['d_count'=> $d_count,'s_count'=>$s_count,'c_count'=>$c_count,'e_count'=>$e_count,'de_count'=>$de_count]);
-})->middleware(['auth', 'verified'])->name("home");
-
-
-
-
-
+// Dashboard API routes
+Route::middleware('auth')->group(function () {
+    Route::get('/api/students-per-department', [DashboardController::class, 'getStudentsPerDepartment'])->name('api.students-per-department');
+    Route::get('/api/global-search', [DashboardController::class, 'globalSearch'])->name('api.global-search');
+});
 
 Route::resource("doctors",DoctorsController::class)->middleware(['auth', 'verified']);
 
