@@ -11,20 +11,9 @@ class Doctor extends Model
 
     protected $fillable = [
         'name',
-        'email',
-        'phone',
-        'specialization',
-        'department_id',
         'address',
-        'hire_date',
+        'age',
+        'gender',
+        'salary',
     ];
-
-    protected $casts = [
-        'hire_date' => 'date',
-    ];
-
-    public function department()
-    {
-        return $this->belongsTo(Department::class);
-    }
 }

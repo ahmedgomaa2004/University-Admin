@@ -16,14 +16,10 @@ class Employee extends Model
         'position',
         'department_id',
         'address',
-        'hire_date',
         'salary',
     ];
 
-    protected $casts = [
-        'hire_date' => 'date',
-        'salary' => 'decimal:2',
-    ];
+   
 
     public function department()
     {

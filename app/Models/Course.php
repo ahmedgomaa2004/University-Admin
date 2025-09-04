@@ -11,22 +11,8 @@ class Course extends Model
 
     protected $fillable = [
         'name',
-        'code',
+        'cost',
         'description',
-        'credits',
-        'department_id',
-        'instructor_id',
-        'duration',
-        'status',
+        'hours',
     ];
-
-    public function department()
-    {
-        return $this->belongsTo(Department::class);
-    }
-
-    public function instructor()
-    {
-        return $this->belongsTo(Doctor::class, 'instructor_id');
-    }
 }
