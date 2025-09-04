@@ -37,16 +37,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
-
-
 Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name("home");
-
-// Dashboard API routes
-Route::middleware('auth')->group(function () {
-    Route::get('/api/students-per-department', [DashboardController::class, 'getStudentsPerDepartment'])->name('api.students-per-department');
-    Route::get('/api/global-search', [DashboardController::class, 'globalSearch'])->name('api.global-search');
-});
 
 Route::resource("doctors",DoctorsController::class)->middleware(['auth', 'verified']);
 
