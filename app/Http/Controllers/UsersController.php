@@ -7,6 +7,20 @@ use APP\Models\User;
 
 class UsersController extends Controller
 {
+
+    public function __construct()
+{
+    $this->middleware(['auth', 'verified']);
+
+    $this->middleware(function ($request, $next) {
+        if (auth()->user()->role !== 'admin') {
+            abort(403, 'Unauthorized');
+        }
+        return $next($request);
+    });
+}
+
+
     /**
      * Display a listing of the resource.
      */

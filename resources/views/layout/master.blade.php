@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title></title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="{{ asset('adminlte/themes/v3/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('adminlte/themes/v3/plugins/summernote/summernote-bs4.min.css') }}">
-  
+
   <!-- Custom CSS for User Profile Dropdown -->
   <style>
     .user-menu .user-image {
@@ -36,7 +36,7 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       transition: all 0.3s ease;
     }
-    
+
     .user-menu .user-image:hover {
       transform: scale(1.1);
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
@@ -44,7 +44,7 @@
       z-index: 1;
       cursor: pointer;
     }
-    
+
     .user-header {
       height: 175px;
       padding: 10px;
@@ -53,40 +53,40 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     .user-header img {
       width: 90px;
       height: 90px;
       border: 3px solid rgba(255,255,255,0.2);
       transition: all 0.3s ease;
     }
-    
+
     .user-header p {
       margin-top: 10px;
       color: #fff;
       text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
-    
+
     .user-header p small {
       display: block;
       font-size: 12px;
       opacity: 0.9;
     }
-    
+
     .user-footer {
       padding: 10px;
       background-color: #f8f9fa;
       border-radius: 0 0 8px 8px;
       position: relative;
     }
-    
+
     .user-footer .btn {
       margin: 0 5px;
       transition: all 0.3s ease;
       border-radius: 4px;
       font-weight: 500;
     }
-    
+
     .dropdown-menu-lg {
       min-width: 280px;
       animation: fadeInDown 0.3s ease;
@@ -96,7 +96,7 @@
       margin-top: 5px;
       z-index: 1050;
     }
-    
+
     @keyframes fadeInDown {
       from {
         opacity: 0;
@@ -107,13 +107,13 @@
         transform: translateY(0);
       }
     }
-    
+
     .dropdown-menu.show {
       display: block !important;
       opacity: 1;
       visibility: visible;
     }
-    
+
     .user-body {
       padding: 15px;
       border-top: 1px solid #dee2e6;
@@ -121,19 +121,19 @@
       background-color: #fff;
       position: relative;
     }
-    
+
     .user-body .row {
       margin: 0;
       align-items: center;
       justify-content: space-between;
     }
-    
+
     .user-body .col-4 {
       padding: 0;
       text-align: center;
       flex: 1;
     }
-    
+
     .user-body a {
       color: #6c757d !important;
       text-decoration: none;
@@ -144,7 +144,7 @@
       font-weight: 500;
       border-radius: 4px;
     }
-    
+
     .user-body a:hover {
       color: #007bff !important;
       background-color: #f8f9fa;
@@ -153,7 +153,7 @@
       text-decoration: none;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    
+
     .user-menu .nav-link:hover {
       background-color: #f8f9fa;
       border-radius: 4px;
@@ -162,7 +162,7 @@
       color: #495057;
       text-decoration: none;
     }
-    
+
     .user-footer .btn:hover {
       background-color: #e9ecef;
       border-color: #dee2e6;
@@ -201,7 +201,7 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-   
+
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -225,10 +225,10 @@
             <img src="{{ asset('adminlte/themes/v3/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
             <p>
               {{ Auth::user()->name }} - {{ Auth::user()->role }}
-             
+
             </p>
           </li>
-          
+
           <!-- Menu Footer-->
           <li class="user-footer">
             <a href="{{ route('profile.edit') }}" class="btn btn-default btn-flat">Profile</a>
@@ -392,8 +392,8 @@
           </li>
 
           @if ( Auth::user()->role == "admin" )
-          
-          
+
+
           <li class="nav-item ">
             <a href="#" class="nav-link">
               <i class="px-1"><ion-icon style="height: 20px; width:20px; border-top: 2px;" name="people"></ion-icon></i>
@@ -425,7 +425,7 @@
     <!-- /.sidebar -->
   </aside>
 
-    
+
 
 
 

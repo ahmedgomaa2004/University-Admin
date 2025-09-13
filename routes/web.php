@@ -49,4 +49,6 @@ Route::resource("employees",EmployeesController::class)->middleware(['auth', 've
 
 Route::resource("departments",DepartmentsController::class)->middleware(['auth', 'verified']);
 
+
+
 Route::resource("users",UsersController::class)->middleware(['auth', 'verified']);

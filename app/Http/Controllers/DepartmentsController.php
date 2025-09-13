@@ -15,6 +15,7 @@ class DepartmentsController extends Controller
     {
         $departments = DB::table("departments")->get();
 
+
         return view("departments.index")->with("departments", $departments);
     }
 
